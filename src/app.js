@@ -7,9 +7,6 @@ require("./db/mongoose");
 const express = require("express");
 const app = express();
 
-//Allowing options request on all resources
-app.options("*", cors());
-
 app.use(express.json()); //passing json to obj automatically
 app.use(withdrawalRouter); //registering our withdrawalRouter
 
