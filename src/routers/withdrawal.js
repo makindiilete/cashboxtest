@@ -1,9 +1,9 @@
 const Withdrawal = require("../models/withdrawal");
 const express = require("express");
 const router = express.Router();
-const cors = require("cors");
+// const cors = require("cors");
 
-router.get("/withdrawals", cors(), async (req, res) => {
+router.get("/withdrawals", async (req, res) => {
   try {
     const withdrawal = await Withdrawal.find({});
     res.send(withdrawal);
@@ -12,7 +12,7 @@ router.get("/withdrawals", cors(), async (req, res) => {
   }
 });
 
-router.post("/withdrawals", cors(), async (req, res) => {
+router.post("/withdrawals", async (req, res) => {
   const withdrawal = new Withdrawal({
     amount: req.body.amount,
     plan: req.body.plan,
@@ -38,7 +38,7 @@ router.post("/withdrawals", cors(), async (req, res) => {
   res.send(withdrawal);
 });*/
 
-router.delete("/withdrawals/:id", cors(), async (req, res) => {
+router.delete("/withdrawals/:id", async (req, res) => {
   try {
     const withdrawal = await Withdrawal.findOneAndDelete({
       _id: req.params.id
@@ -62,7 +62,7 @@ router.delete("/withdrawals/:id", cors(), async (req, res) => {
   }
 });
 
-router.get("/withdrawals/:id", cors(), async (req, res) => {
+router.get("/withdrawals/:id", async (req, res) => {
   const _id = req.params.id;
   try {
     const withdrawal = await Withdrawal.findById(req.params.id);
