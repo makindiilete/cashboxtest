@@ -6,7 +6,6 @@ require("./db/mongoose");
 /*Creating our server*/
 const express = require("express");
 const app = express();
-const cors = require("cors");
 
 //Allowing options request on all resources
 app.options("*", cors());
