@@ -39,6 +39,7 @@ router.post("/withdrawals", async (req, res) => {
 });*/
 
 router.delete("/withdrawals/:id", async (req, res) => {
+  const withdrawal = await Withdrawal.findById(req.params.id);
   if (withdrawal.status === "approved") {
     return res
       .status(400)
