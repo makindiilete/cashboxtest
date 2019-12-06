@@ -39,24 +39,24 @@ router.post("/withdrawals", async (req, res) => {
 });*/
 
 router.delete("/withdrawals/:id", async (req, res) => {
+  if (withdrawal.status === "approved") {
+    return res
+      .status(400)
+      .send(
+        `Your withdrawal has been ${withdrawal.status} and cannot be deleted!`
+      );
+  } else if (withdrawal.status === "declined") {
+    return res
+      .status(400)
+      .send(
+        `Your withdrawal has been ${withdrawal.status} and cannot be deleted!`
+      );
+  }
+
   try {
     const withdrawal = await Withdrawal.findOneAndDelete({
       _id: req.params.id
     });
-
-    if (withdrawal.status === "approved") {
-      return res
-        .status(400)
-        .send(
-          `Your withdrawal has been ${withdrawal.status} and cannot be deleted!`
-        );
-    } else if (withdrawal.status === "declined") {
-      return res
-        .status(400)
-        .send(
-          `Your withdrawal has been ${withdrawal.status} and cannot be deleted!`
-        );
-    }
   } catch (error) {
     res.status(500).send(error.message);
   }
