@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/withdrawals", async (req, res) => {
   try {
-    const withdrawal = await Withdrawal.find({});
+    const withdrawal = await Withdrawal.find({}).sort({ createdAt: -1 });
     res.send(withdrawal);
   } catch (error) {
     res.status(500).send();
