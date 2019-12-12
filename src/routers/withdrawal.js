@@ -28,16 +28,16 @@ router.post("/withdrawals", async (req, res) => {
   }
 });
 
-/*router.delete("/:id", [auth, admin], async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const withdrawal = await Withdrawal.findByIdAndRemove(req.params.id);
 
   if (!withdrawal)
     return res.status(404).send("The withdrawal with the given ID was not found.");
 
   res.send(withdrawal);
-});*/
+});
 
-router.delete("/:id", async (req, res) => {
+/*router.delete("/:id", async (req, res) => {
   const withdrawal = await Withdrawal.findById(req.params.id);
   if (withdrawal.status === "approved") {
     return res
@@ -59,7 +59,7 @@ await Withdrawal.findByIdAndRemove(req.params.id);
     return res.status(404).send("The withdrawal with the given ID was not found.");
 
   res.send(withdrawal);
-});
+});*/
 
 router.get("/withdrawals/:id", async (req, res) => {
   const _id = req.params.id;
