@@ -53,13 +53,12 @@ router.delete("/:id", async (req, res) => {
       );
   }
 
-  try {
-    const withdrawal = await Withdrawal.findOneAndDelete({
-      _id: req.params.id
-    });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+const withdrawal = await Withdrawal.findByIdAndRemove(req.params.id);
+
+  if (!withdrawal)
+    return res.status(404).send("The withdrawal with the given ID was not found.");
+
+  res.send(withdrawal);
 });
 
 router.get("/withdrawals/:id", async (req, res) => {
