@@ -8,11 +8,6 @@ const withdrawalSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
-    plan: {
-      type: String,
-      trim: true,
-      required: true
-    },
     payout: {
       type: Number,
       required: true,
