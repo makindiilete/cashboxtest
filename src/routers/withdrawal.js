@@ -29,7 +29,21 @@ router.post("/withdrawals", async (req, res) => {
 });
 
 router.delete("/withdrawals/:id", async (req, res) => {
-  const withdrawal = await Withdrawal.findByIdAndRemove(req.params.id);
+  const withdrawal = await Withdrawal.findById(req.params.id);
+  if (withdrawal.status === "approved") {
+    return res
+      .status(400)
+      .send(
+        `Your withdrawal has been ${withdrawal.status} and cannot be deleted!`
+      );
+  } else if (withdrawal.status === "declined") {
+    return res
+      .status(400)
+      .send(
+        `Your withdrawal has been ${withdrawal.status} and cannot be deleted!`
+      );
+  }
+  const withdrawalToDelete = await Withdrawal.findByIdAndRemove(req.params.id);
 
   if (!withdrawal)
     return res.status(404).send("The withdrawal with the given ID was not found.");
