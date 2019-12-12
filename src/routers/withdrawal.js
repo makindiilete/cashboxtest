@@ -28,7 +28,7 @@ router.post("/withdrawals", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/withdrawals/:id", async (req, res) => {
   const withdrawal = await Withdrawal.findByIdAndRemove(req.params.id);
 
   if (!withdrawal)
