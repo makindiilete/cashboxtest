@@ -15,7 +15,6 @@ router.get("/withdrawals", async (req, res) => {
 router.post("/withdrawals", async (req, res) => {
   const withdrawal = new Withdrawal({
     amount: req.body.amount,
-    plan: req.body.plan,
     payout: req.body.payout,
     status: req.body.status
   });
